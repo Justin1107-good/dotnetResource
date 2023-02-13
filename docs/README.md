@@ -212,3 +212,5 @@ PM>
 成功生成数据库 
 
 最后出现数据库表字段变动，使用update-database 更新
+
+## [xshell工具使用](docs/xshell工具使用.md)
