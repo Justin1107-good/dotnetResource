@@ -1,6 +1,6 @@
 # LOG4NET 配置日志记录器
 
-``
+```
 public static ILog LogConfinuration(Type type)
         {
             // 配置日志记录器
@@ -26,4 +26,4 @@ public static ILog LogConfinuration(Type type)
 
             return LogManager.GetLogger(type);
         }
- ``
+ ```
