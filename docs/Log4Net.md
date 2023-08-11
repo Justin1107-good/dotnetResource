@@ -1,5 +1,12 @@
 # LOG4NET 配置日志记录器
 
+### 引用
+
+using log4net;
+using log4net.Appender;
+using log4net.Layout;
+using log4net.Repository.Hierarchy;
+
 ```
 public static ILog LogConfinuration(Type type)
         {
