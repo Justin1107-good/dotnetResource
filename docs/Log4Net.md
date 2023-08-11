@@ -1,6 +1,6 @@
 # LOG4NET 配置日志记录器
 
-``c#
+``
 public static ILog LogConfinuration(Type type)
         {
             // 配置日志记录器
