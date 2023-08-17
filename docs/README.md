@@ -1,4 +1,6 @@
-# .Net 6 实现 EF Core 之CodeFirst模式
+# .NET 笔记
+
+## .Net 6 实现 EF Core 之CodeFirst模式
 
 > ef 已.net平台的一种ORM框架，初次之外还有Dapper、FreeSql等
 >
@@ -213,9 +215,10 @@ PM>
 
 最后出现数据库表字段变动，使用update-database 更新
 
-# xshell工具使用
- [xshell工具使用](docs/xshell工具使用.md)
+## xshell工具使用
+
+ [docs/xshell工具使用.md](https://github.com/Justin1107-good/dotnetResource/blob/0450b11c247a1003b2b170ca0a76ce05ddf9b652/docs/xshell%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8.md)https://github.com/Justin1107-good/dotnetResource/blob/0450b11c247a1003b2b170ca0a76ce05ddf9b652/docs/xshell%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8.md)
  
-# 最便捷的Log4Net使用方法
+## 最便捷的Log4Net使用方法
 
 [Log4Net教程](https://github.com/Justin1107-good/dotnetResource/blob/23c60b055963cd4213907881daaff93aa2da5b1b/docs/Log4Net.md)
