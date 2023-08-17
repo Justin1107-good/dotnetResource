@@ -212,3 +212,10 @@ PM>
 成功生成数据库 
 
 最后出现数据库表字段变动，使用update-database 更新
+
+# xshell工具使用
+ [xshell工具使用](docs/xshell工具使用.md)
+ 
+# 最便捷的Log4Net使用方法
+
+[Log4Net教程](https://github.com/Justin1107-good/dotnetResource/blob/23c60b055963cd4213907881daaff93aa2da5b1b/docs/Log4Net.md)
