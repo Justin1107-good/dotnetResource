@@ -97,12 +97,12 @@ static class Program
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            //获得当前登录的Windows用户标示
+            //获得当前登录的Windows用户标示 https://github.com/Justin1107-good/dotnetResource/blob/c32858c074acd993bd454ed3ebcda23c0ca45384/docs/record/WPF/Winform/%E8%8E%B7%E5%BE%97%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E7%9A%84Windows%E7%94%A8%E6%88%B7%E6%A0%87%E7%A4%BA.md
 
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
 
             WindowsPrincipal principal = new WindowsPrincipal(identity);
-            //判断当前登录用户是否为管理员
+            //判断当前登录用户是否为管理员 https://github.com/Justin1107-good/dotnetResource/blob/c32858c074acd993bd454ed3ebcda23c0ca45384/docs/record/WPF/Winform/%E8%8E%B7%E5%BE%97%E5%BD%93%E5%89%8D%E7%99%BB%E5%BD%95%E7%9A%84Windows%E7%94%A8%E6%88%B7%E6%A0%87%E7%A4%BA.md
 
             if (principal.IsInRole(WindowsBuiltInRole.Administrator))
             {
