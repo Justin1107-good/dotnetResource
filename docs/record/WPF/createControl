@@ -1,0 +1,191 @@
+```
+<StackPanel x:Name="dynamicControlsContainer">
+                        <!-- 这里将显示动态生成的控件 -->
+                    </StackPanel>
+```
+```
+ private void combox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Items items = combox.SelectedItem as Items;
+
+
+            if (items != null)
+            {
+                var attributesList = items.attributes;
+                dynamicControlsContainer.Children.Clear(); // 清除之前的动态生成的控件
+
+                CreateDynamicGrid(attributesList);
+                //foreach (ControlAttribute attr in attributesList)
+                //{
+                //    Label label = new Label();
+                //    label.Content = attr.attributeName + ":";
+                //    dynamicControlsContainer.Children.Add(label);
+                //    TextBlock textBlock = new TextBlock();
+                //    textBlock.Text = attr.attributeValue;
+                //    dynamicControlsContainer.Children.Add(textBlock);
+                //}
+
+            }
+
+
+
+        }
+        private void CreateDynamicGrid(List<ControlAttribute> data)
+        {
+            int rowCount = (data.Count+1) / 2; // Calculate the number of rows needed
+
+            int columnCount = 2;
+
+            Grid dynamicGrid = new Grid();
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                dynamicGrid.RowDefinitions.Add(new RowDefinition());
+            }
+
+            for (int j = 0; j < columnCount; j++)
+            {
+                dynamicGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                Label label = new Label
+                {
+                    
+                    Content = data[i].attributeName+":",
+                    Margin = new Thickness(5)
+                };
+                TextBox textbox = new TextBox
+                {
+                    Text = data[i].attributeValue,
+                    Width = 150,
+                    Height = 25,
+                    Margin = new Thickness(-20,0,0,0)
+                };
+
+                int row = i / columnCount;
+                int col = i % columnCount;
+
+                dynamicGrid.Children.Add(label);
+                Grid.SetRow(label, row);
+                Grid.SetColumn(label, col);
+                dynamicGrid.Children.Add(textbox);
+                Grid.SetRow(textbox, row);
+                Grid.SetColumn(textbox, col);
+            }
+
+            dynamicControlsContainer.Children.Add(dynamicGrid);
+        }
+
+
+      
+```
+      ```
+    public class Items
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public List<ControlAttribute> attributes { get; set; } = new List<ControlAttribute>();
+    }
+    public class ControlAttribute
+    {
+        public int attributeId { get; set; }
+        public string attributeName { get; set; }
+        public string attributeValue { get; set; }
+    }
+      ```
+
+          ```
+          public void BindComb()
+        {
+
+            cmblist.Add(new Items
+            {
+                id = 1,
+                name = "正方形",
+                attributes = new List<ControlAttribute> {
+                    new ControlAttribute { attributeId=1, attributeName="长", attributeValue="100" },
+                    new ControlAttribute { attributeId=1, attributeName="宽", attributeValue="100" },
+
+                }
+            });
+            cmblist.Add(new Items
+            {
+                id = 2,
+                name = "正方体",
+                attributes = new List<ControlAttribute> {
+                    new ControlAttribute { attributeId=1, attributeName="长", attributeValue="100" },
+                    new ControlAttribute { attributeId=2, attributeName="宽", attributeValue="30" },
+                    new ControlAttribute { attributeId=3, attributeName="高", attributeValue="10" },
+                    new ControlAttribute { attributeId=4, attributeName="尺寸", attributeValue="10" },
+                    new ControlAttribute { attributeId=5, attributeName="尺寸1", attributeValue="10" },
+                    new ControlAttribute { attributeId=6, attributeName="尺寸2", attributeValue="10" },
+                    new ControlAttribute { attributeId=7, attributeName="尺寸3", attributeValue="10" },
+
+                }
+            });
+            cmblist.Add(new Items
+            {
+                id = 3,
+                name = "圆形",
+                attributes = new List<ControlAttribute> {
+                    new ControlAttribute { attributeId=1, attributeName="半径", attributeValue="100" }
+
+                }
+            });
+            cmblist.Add(new Items
+            {
+                id = 4,
+                name = "圆柱体",
+                attributes = new List<ControlAttribute> {
+                    new ControlAttribute { attributeId=1, attributeName="半径", attributeValue="50" },
+                    new ControlAttribute { attributeId=1, attributeName="高", attributeValue="100" },
+
+                }
+            });
+
+        }
+          ```
+          
+要获取动态创建的控件的值，你可以通过控件的名称或者在创建时将它们添加到一个列表中，然后访问这些控件以获取其值。以下是一种方法：
+
+使用控件的名称来获取值：
+          
+当你在创建动态控件时，为每个控件设置一个唯一的名称，然后在需要获取值时，使用这些名称来访问控件的值。例如：
+
+````
+`
+// 创建一个 TextBox 并设置名称
+TextBox textBox = new TextBox();
+textBox.Name = "dynamicTextBox1"; // 设置唯一名称
+textBox.Text = "Some value";
+dynamicControlsContainer.Children.Add(textBox);
+
+// 获取该 TextBox 的值
+TextBox retrievedTextBox = (TextBox)dynamicControlsContainer.FindName("dynamicTextBox1");
+string value = retrievedTextBox.Text; // 获取文本框的值
+使用一个列表来保存控件并获取值：
+在创建控件时，将它们添加到一个列表中，然后在需要获取值时，遍历该列表并访问每个控件的值。例如：
+
+ 
+List<TextBox> textBoxes = new List<TextBox>();
+
+// 创建 TextBox 控件并添加到列表
+for (int i = 0; i < data.Count; i++)
+{
+    TextBox textBox = new TextBox();
+    textBox.Text = data[i];
+    textBoxes.Add(textBox);
+    dynamicControlsContainer.Children.Add(textBox);
+}
+
+// 获取所有 TextBox 控件的值
+foreach (TextBox textBox in textBoxes)
+{
+    string value = textBox.Text; // 获取每个 TextBox 的值
+    // 在这里你可以处理值，例如将它们保存到集合中或进行其他操作
+}
+```
+            
+使用这些方法，你可以获取动态创建控件的值并进一步处理它们，具体取决于你的需求。
